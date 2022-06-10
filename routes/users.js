@@ -9,7 +9,7 @@ const client = new Client({
     user: 'postgres',
     host: 'localhost',
     database: 'mediumApp',
-    password: 'Testing@23',
+    password: '******',
     port: 5432,
   })
 client.connect(err => {
