@@ -1,24 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
-const {Client} = require('pg');
 const bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
 const auth = require('../middleware/auth');
-const client = new Client({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'mediumApp',
-    password: '******',
-    port: 5432,
-  })
-client.connect(err => {
-  if (err) {
-    console.error('connection error', err.stack)
-  } else {
-    console.log(' database connected')
-  }
-})
+const client = require('../config/db');
+
+
 
 router.post('/register',(req,res)=>{
     const salt = bcrypt.genSaltSync(6);
@@ -33,11 +21,12 @@ client.query(text, values, (err, data) => {
   } else {
     
     res.json(data.rows[0]);
-    // { name: 'brianc', email: 'brian.m.carlson@gmail.com' }
   }
 })
     
 });
+
+
 
 router.post('/login',(req,res)=>{
 
